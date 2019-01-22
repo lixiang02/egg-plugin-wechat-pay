@@ -13,7 +13,7 @@
   "dependencies": {
     "change-case": "^3.1.0",
     "lodash": "^4.17.11",
-    "wechatpay-private-sdk": "^1.0.0"
+    "wechatpay-private-sdk": "^2.0.0"
   },
   "devDependencies": {
     "autod": "^3.0.0",
