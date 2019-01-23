@@ -1,6 +1,6 @@
 {
   "name": "egg-plugin-wechat-pay",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "eggPlugin": {
     "name": "eggpluginWechatPay"
