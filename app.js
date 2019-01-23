@@ -21,11 +21,17 @@ module.exports = app => {
     const { wechatPay } = app.config || {};
     const payClassNamesSet = new Set(PAY_CLASS_NAMES);
     if (wechatPay.pfx && typeof wechatPay.pfx === 'string') { wechatPay.pfx = fs.readFileSync(path.resolve(__dirname, wechatPay.pfx)); }
-    Object.keys(wechatPay).map(key => {
-      const className = cc.upperCaseFirst(key);
-      if (payClassNamesSet.has(className) && wechatPay[key]) {
-        app[key] = new payBase[className](_.pick(wechatPay, [ 'appId', 'key', 'mchId', 'pfx' ]));
-      }
-    });
+    if (wechatPay.appId && wechatPay.key && wechatPay.mchId) {
+      Object.keys(wechatPay).filter(key => ![ 'appId', 'key', 'mchId', 'pfx' ].includes(key)).map(key => {
+        const className = cc.upperCaseFirst(key);
+        if (payClassNamesSet.has(className) && wechatPay[key]) {
+          try {
+            app[key] = new payBase[className](_.pick(wechatPay, [ 'appId', 'key', 'mchId', 'pfx' ]));
+          } catch (error) {
+            console.log(`wechat pay init ${className} fail. params is ${JSON.stringify(wechatPay)}`);
+          }
+        }
+      });
+    }
   });
 };
