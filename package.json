@@ -1,6 +1,6 @@
 {
   "name": "egg-plugin-wechat-pay",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "",
   "eggPlugin": {
     "name": "eggpluginWechatPay"
@@ -13,7 +13,7 @@
   "dependencies": {
     "change-case": "^3.1.0",
     "lodash": "^4.17.11",
-    "wechatpay-private-sdk": "^2.0.0"
+    "wechatpay-private-sdk": "^3.0.0"
   },
   "devDependencies": {
     "autod": "^3.0.0",
