@@ -21,12 +21,12 @@ module.exports = app => {
     const { wechatPay } = app.config || {};
     const payClassNamesSet = new Set(PAY_CLASS_NAMES);
     if (wechatPay.pfx && typeof wechatPay.pfx === 'string') { wechatPay.pfx = fs.readFileSync(path.resolve(__dirname, wechatPay.pfx)); }
-    if (wechatPay.appId && wechatPay.key && wechatPay.mchId) {
-      Object.keys(wechatPay).filter(key => ![ 'appId', 'key', 'mchId', 'pfx' ].includes(key)).map(key => {
+    if (wechatPay.key && wechatPay.mchId) {
+      Object.keys(wechatPay).filter(key => ![ 'key', 'mchId', 'pfx' ].includes(key)).map(key => {
         const className = cc.upperCaseFirst(key);
-        if (payClassNamesSet.has(className) && wechatPay[key]) {
+        if (payClassNamesSet.has(className) && wechatPay[key] && typeof wechatPay[key] === 'object' && wechatPay[key].appId) {
           try {
-            app[key] = new payBase[className](_.pick(wechatPay, [ 'appId', 'key', 'mchId', 'pfx' ]));
+            app[key] = new payBase[className](Object.assign({}, _.pick(wechatPay, [ 'key', 'mchId', 'pfx' ], { appId: wechatPay[key].appId })));
           } catch (error) {
             console.log(`wechat pay init ${className} fail. params is ${JSON.stringify(wechatPay)}`);
           }

@@ -60,18 +60,29 @@ see [config/config.default.js](config/config.default.js) for more detail.
 ```js
 {
     "wechatPay": {
-        'appId': '',
         'key': '',
         'mchId': '',
         'pfx': '', // 允许传Buffer或者证书的本地路径
 
         // 是否实例化支付业务类 默认false, 只有为true，该实例才能出现在应用类中
-        'appPay': false, // APP 支付
-        'litePay': false, // 小程序支付
-        'pubPay': false, // 公众号支付
-        'pubQrPay': false, // 扫码支付
-        'pubScanPay': false, // 刷卡支付
-        'wapPay': false, // H5 支付
+        'appPay': {
+            appId: ''
+        }, // APP 支付
+        'litePay': {
+            appId: ''
+        }, // 小程序支付
+        'pubPay': {
+            appId: ''
+        }, // 公众号支付
+        'pubQrPay': {
+            appId: ''
+        }, // 扫码支付
+        'pubScanPay': {
+            appId: ''
+        }, // 刷卡支付
+        'wapPay': {
+            appId: ''
+        }, // H5 支付
     }
 }
 ```
