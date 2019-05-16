@@ -36,7 +36,7 @@ $ npm i egg-plugin-wechat-pay --save
 // {app_root}/config/plugin.js
 exports.eggPluginWechatPay = {
   enable: true,
-  package: 'egg-plugin-wechat-pay',
+  package: 'egg-plugin-wechat-pay'
 };
 ```
 
